@@ -1,0 +1,50 @@
+---
+version: 0.1.0
+name: rcuda
+description: "rCUDA daemon to provide remote access to GPUs"
+maintainers:
+- name: Christian Kniep
+  email: christian@qnib.org
+targets:
+  swarm: true
+  kubernetes: false
+
+---
+
+version: "3.6"
+services:
+  daemon:
+    image: qnib/uplain-rcudad:v0.1.0
+    environment:
+      HOUDINI_GPU_ENABLED: "true"
+      HOUDINI_CONTAINER_PRIVILEGED: "true"
+    networks:
+      - rcuda-net
+    labels:
+      houdini.user.keep: "true"
+    deploy:
+        mode: global
+        placement:
+          constraints:
+            - node.labels.houdini.gpu == true
+    ports:
+      # TODO: Needs to be identifieable...
+      - ${rcuda.prometheus.port}:8081
+    volumes:
+      - ${rcuda.dir}:/usr/local/rcuda:ro
+
+networks:
+  rcuda-net:
+    attachable: true
+
+---
+rcuda:
+  dir: /usr/local/rcuda
+  prometheus:
+    port: 8081
+debug: false
+docker:
+  registry: docker.io
+  repo: qnib
+  name: rcudad
+  tag: v4
