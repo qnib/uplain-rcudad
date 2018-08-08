@@ -1,5 +1,5 @@
 ---
-version: 0.1.0
+version: 0.2.0
 name: rcuda
 description: "rCUDA daemon to provide remote access to GPUs"
 maintainers:
@@ -14,7 +14,7 @@ targets:
 version: "3.6"
 services:
   daemon:
-    image: qnib/uplain-rcudad:v0.1.0
+    image: qnib/uplain-rcudad:v0.2.0
     environment:
       HOUDINI_GPU_ENABLED: "true"
       HOUDINI_CONTAINER_PRIVILEGED: "true"
