@@ -14,7 +14,7 @@ targets:
 version: "3.6"
 services:
   daemon:
-    image: qnib/uplain-rcudad:v0.2.0
+    image: ${docker.image}
     environment:
       HOUDINI_GPU_ENABLED: "true"
       HOUDINI_CONTAINER_PRIVILEGED: "true"
@@ -38,6 +38,8 @@ networks:
     attachable: true
 
 ---
+docker:
+  image: qnib/uplain-rcudad:v0.2.0
 rcuda:
   dir: /usr/local/rcuda
   prometheus:
