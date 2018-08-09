@@ -30,6 +30,8 @@ services:
     ports:
       # TODO: Needs to be identifieable...
       - ${rcuda.prometheus.port}:8081
+      - ${rcuda.daemon.port}:8308/udp
+      - ${rcuda.daemon.port}:8308/tcp
     volumes:
       - ${rcuda.dir}:/usr/local/rcuda:ro
 
@@ -42,5 +44,7 @@ docker:
   image: qnib/uplain-rcudad:v0.2.0
 rcuda:
   dir: /usr/local/rcuda
+  daemon:
+    port: 8308
   prometheus:
     port: 8081
