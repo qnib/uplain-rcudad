@@ -1,5 +1,5 @@
 ---
-version: 0.2.0
+version: 0.2.1
 name: rcuda
 description: "rCUDA daemon to provide remote access to GPUs"
 maintainers:
@@ -41,7 +41,7 @@ networks:
 
 ---
 docker:
-  image: qnib/uplain-rcudad:v0.2.0
+  image: qnib/uplain-rcudad:v0.2.1
 rcuda:
   dir: /usr/local/rcuda
   daemon:
